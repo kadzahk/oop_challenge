@@ -1,11 +1,11 @@
+#!/usr/bin/python3
 import sys
-
-import numpy as np
+from numpy import random
 
 
 class pokemon:
 
-    def __init__(self, name, number, height, weight, attack, typeP, color, health):
+    def __init__(self, name, number, height, weight, attack, typeP, color, health = 20):
         self.name = name
         self.number = number
         self.height = height
@@ -15,72 +15,72 @@ class pokemon:
         self.color = color
         self.health = health
 
-# names of pokemons
-def name(self, other):
-    self.name = "piplup"
-    other.name = "charmander"
+    def showpoints(self, other):
+        while (self.health > 0) and (other.health > 0):
+            # imprimir los puntos de salud de cada pokemon
+            print(f"\n{self.name}\tPoints of health\t{self.health}")
+            print(f"\n{other.name}\tPoints of health\t{other.health}")
 
-# Here is the  height
-def height(self, other):
-    self.height = 0.4
-    other.height = 0.6
-
-# Here are the types
-def typep(self, other):
-    self.typep = "Water"
-    other.typep = "Fire"
-
-# colors of pokemons
-def color(self, other):
-    self.color = "blue"
-    other.color = "red"
-
-# here is the weight of pokemons
-def weight (self, other):
-    self.weight = 5.2
-    other.weight = 8.5
-
-# here us the health
-def health(self, other):
-    self.health = 15
-    other.health = 15
-
-# here is number of identification
-def number(self, other):
-    self.number = 3-9-3
-    self.other = 0-0-4
+        self.attack(other)
+        self.printP1()
+        self.printP2(other)
 
 
+    def showdown(self, other):
 
-""" Aqui va el ataque y resta de vida   """
+        print("-----POKEMONE BATTLE-----")
 
-def attack(self, other):
-    if self.typeP == other.typeP:
-        try:
-            self.health -= other.attack
-            other.health -= self.attack
-        except:
-            pass
+        print("Name: ", self.name)
+        print("Number: ", self.number)
+        print("Type: ", self.typeP)
+        print("Color: ", self.color)
+        print("Height: ", self.height)
+        print("Attack: ", self.attack)
+        print("Weight: ", self.weight)
+        print("HP: ", self.health)
 
+        print("-----VS!!!-----")
 
-def printP1 (self):
+        print("Name: ", other.name)
+        print("Type: ", other.typeP)
+        print("Color: ", other.color)
+        print("Weight: ", other.weight)
+        print("Health: ", other.health)
+        print("Attack: ", other.attack)
+        print("Number: ", other.number)
+        print("Height: ", other.height)
 
-    print("Name: " + self.name)
-    print("Number: " + self.number)
-    print("Type: " + self.typeP)
-    print("Color: " + self.color)
-    print("Height: " + self.height)
-    print("Attack: " + self.attack)
-    print("Weight: " + self.weight)
-    print("HP: " + self.health)
+        while (self.health > 0) and (other.health > 0):
+            print(self.name, " is attacking to ", other.name)
+            
+            rng_damage = self.attack * random.randinit(5)
+            other.health -= rng_damage
+            print(self.name, " did ", rng_damage, " to ", other.name)
+            
+            print("the health of ", other.name, " has been reduced to:", other.health)
 
-def printP2(other):
+            if other.health <= 0:
+                print("\n..." + other.name + ' fainted. :(')
+                break
+            print("now is the turn of ", other.name)
 
-    print("Name: " + other.name)
-    print("Type: " + other.typep)
-    print("Color: " + other.color)
-    print("Weight: " + other.weight)
-    print("Health: " + other.health)
-    print("Attack: " + other.attack)
-    print("Number: " + other.number)
-    print("Height: " + other.height)
+            print(other.name, " is attacking to ", self.name)
+           
+            rng_damage = other.attack * random.randinit(5)
+            self.health -= rng_damage
+            print(other.name, " did ", rng_damage, " to ", self.name)
+            
+            print("the health of ", self.name, " has been reduced to:", self.health)
+
+            if self.health <= 0:
+                print("\n..." + self.name + ' fainted. :(')
+                break
+
+if __name__ == '__main__':
+    piph = input("insert the attack amount between 5 or 1 \n")
+    piplup = pokemon("Piplup", 389, 0.4, 5.2, piph, "Water", "Blue", 20)
+
+    chart = input("insert the attack amount between 5 or 1 \n")
+    charmander = pokemon("Charmander", 4, 0.6, 8.5, chart, "Fire", "Red", 20)
+
+    piplup.showdown(charmander)
